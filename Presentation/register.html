@@ -13,15 +13,14 @@
 <body>
 
     <div class="top">
-        <h1 class="top-title">Register to your classes!</h1>
+        <h1 class="top-title">Create your account</h1>
     </div>
     <!-- Main -->
     <div class="main">
         <div class="main-register">
             <!-- A student can add more than 1 class at a time -->
-            <h2 class="main-register-title">Enter your information and the classes you wish to add</h2>
-            
-            <form class="main-register-info" method="post" action="index.php">
+            <h2 class="main-register-title">Enter your information</h2>
+            <form class="main-register-info" method="post" action="../register.php">
                 <p class="main-register-info-role">
                     <label for="role">Role</label>
                     <select name="role" class="role">
@@ -54,7 +53,7 @@
                 </p>
                 <p class="main-register-info-dateOfBirth">
                     <label>Date of birth</label>
-                    <input name = "dateOfBirth" type = "date" value = "" size = "20"/>
+                    <input class="main-register-info-dateOfBirth-input" name = "dateOfBirth" type = "date" value = "" size = "20"/>
                 </p>     
                 <button disabled class="main-register-info-submit">Submit</button> <span class="main-register-info-submit-span">All info looks good!</span>   
             </form>

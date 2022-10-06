@@ -5,6 +5,8 @@ let emailInput = document.querySelector(".main-register-info-email-input")
 let emailValidation = document.querySelector(".main-register-info-email-validation")
 let submit = document.querySelector(".main-register-info-submit");
 let submitValidation = document.querySelector(".main-register-info-submit-span")
+let date = document.querySelector(".main-register-info-dateOfBirth-input")
+
 
 phoneNumberInput.addEventListener("keyup", (event)=>{
     if(validePhoneNumber(phoneNumberInput.value)){
