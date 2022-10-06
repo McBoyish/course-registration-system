@@ -87,6 +87,10 @@ body{
 .main-register-info-role > select{
 	width: 125px;
 }
+.main-register-info-submit-span, .main-register-info-email-validation, .main-register-info-phoneNumber-validation{
+	display: none;
+	color: green;
+}
 
 
 @media (max-width: 1400px) {
