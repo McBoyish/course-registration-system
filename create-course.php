@@ -33,11 +33,11 @@ $insertCourse = "INSERT INTO Course (courseCode, title, semester, days, courseTi
 if (!($database = mysqli_connect("localhost", "root", "")))
   die("Could not connect to database");
 
-if (courseExists($database, $courseCode))
-  die("Course code already exists");
-
 if (!mysqli_select_db($database, "Assignment1"))
   die("Could not open database");
+
+if (courseExists($database, $courseCode))
+  die("Course code already exists");
 
 if (!($insertUserResult = mysqli_query($database, $insertCourse))) {
   print("Error inserting course");
