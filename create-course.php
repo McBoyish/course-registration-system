@@ -1,5 +1,6 @@
 <?php
-
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST");
 // values for day and semester
 // day: "mon", "tue", "wed", "thu", "fri", "sat", "sun"
 // days: day-day-day...
@@ -18,6 +19,8 @@ $room = $_POST["room"];
 $startDate = $_POST["startDate"];
 $endDate = $_POST["endDate"];
 
+// validate inputs
+
 function courseExists($database, $courseCode)
 {
   $checkCourse = "SELECT FROM Course WHERE courseCode = '$courseCode'";
@@ -25,25 +28,28 @@ function courseExists($database, $courseCode)
   return $res->num_rows > 0;
 }
 
+function json($message, $code)
+{
+  $array = array('message' => $message, 'code' => $code);
+  return json_encode($array);
+}
+
 $insertCourse = "INSERT INTO Course (courseCode, title, semester, days, courseTime, instructor, room, startDate, endDate)
 			     VALUES ('$coursecode', '$title','$semester','$days', '$courseTime', '$instructor', '$room', '$startDate', '$endDate')";
 
-
 // Connect to MySQL
 if (!($database = mysqli_connect("localhost", "root", "")))
-  die("Could not connect to database");
+  echo json("Internal server error", 500);
 
 if (!mysqli_select_db($database, "Assignment1"))
-  die("Could not open database");
+  echo json("Internal server error", 500);
 
 if (courseExists($database, $courseCode))
-  die("Course code already exists");
+  echo json("Course code already exists", 400);
 
 if (!($insertUserResult = mysqli_query($database, $insertCourse))) {
-  print("Error inserting course");
-  die(mysqli_error($database));
+  echo json("Internal server error", 500);
 }
 
-print("Course " . $courseCode . " successfully created");
-
 mysqli_close($database);
+echo json("Course " . $courseCode . " successfully created", 200);
