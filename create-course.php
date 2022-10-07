@@ -1,6 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
+header("Content-type: application/json");
 
 // values for day and semester
 // day: "mon", "tue", "wed", "thu", "fri", "sat", "sun"
