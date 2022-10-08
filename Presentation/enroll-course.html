@@ -11,9 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-
-
-
     <div class="top">
         <h1 class="top-title">Register to your classes!</h1>
     </div>
@@ -25,7 +22,7 @@
             <!-- A student can add more than 1 class at a time -->
             <h2 class="main-register-title">Enter your information and the classes you wish to add</h2>
             
-            <form class="main-register-info" method="post" action="./../enroll.php">
+            <form class="main-register-info" method="post" action="./../enroll-course.php">
                 <p class="main-register-info-role">
                     <label for="role">Role</label>
                     <select name="role" class="role">
@@ -66,7 +63,10 @@
                 </p>     
                 <button disabled class="main-register-info-submit">Submit</button> <span class="main-register-info-submit-span">All info looks good!</span>   
                 <div class="main-registerclasses">
-                    <a href="/Presentation/register.html"><h1 class="main-registerclasses-title">No account? Register here!</h1></a>
+                    <a href="./register.html"><h1 class="main-registerclasses-title">No account? Register here!</h1></a>
+                </div>
+                <div class="main-registerclasses">
+                    <a href="./login-administrator.html"><h1 class="main-registerclasses-title">Administrator? Login here</h1></a>
                 </div>
             </form>
         </div>
@@ -76,6 +76,6 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores mollitia, adipisci deleniti provident cum neque corrupti ad laudantium recusandae, deserunt assumenda tempore obcaecati consequatur tenetur suscipit molestias delectus hic soluta.</p>
         </div>
     </div>
-    <script src="app.js"></script>
+    <script src="enroll-course.js"></script>
 </body>
 </html>
