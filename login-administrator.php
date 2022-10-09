@@ -32,8 +32,5 @@ else {
         $myArray[] = $row;
     }
     echo json_encode($myArray);
-    // print("Your employmentID is :" . );
-
-
 }
 mysqli_close($database);
