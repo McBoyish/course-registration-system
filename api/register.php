@@ -68,14 +68,14 @@
         //Insertion of user in PERSON WORKED, so now we need to update Admin OR student
 
         $queryPersonIDString = "SELECT MAX(personID) FROM person";
-        
+
         if (!($queryPersonID = mysqli_query($database, $queryPersonIDString))) {
             print("Could not execute query! <br />");
             die(mysqli_error($database) . "</body></html>");
         } // end if
 
         print($queryPersonID);
-        
+
         $insertUserInPerson = "INSERT INTO administrator (employmentID)
         VALUES ('$queryPersonID')";
 
@@ -90,8 +90,9 @@
     }
     mysqli_close($database);
 
-    function userExists($database, $checkUser){
-        if($checkUserResult = mysqli_query($database, $checkUser)){
+    function userExists($database, $checkUser)
+    {
+        if ($checkUserResult = mysqli_query($database, $checkUser)) {
             return true;
         }
         return false;
