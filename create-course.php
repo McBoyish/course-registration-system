@@ -10,15 +10,16 @@ header("Content-type: application/json");
 
 // courseTime can be "hh:mm:ss" or "hh:mm"
 // start and end date should be "yyyy-mm-dd"
-$courseCode = $_POST["courseCode"];
-$title = $_POST["title"];
-$semester = $_POST["semester"];
-$days = $_POST["days"];
-$courseTime = $_POST["courseTime"];
-$instructor = $_POST["instructor"];
-$room = $_POST["room"];
-$startDate = $_POST["startDate"];
-$endDate = $_POST["endDate"];
+$params = json_decode(file_get_contents('php://input'), TRUE);
+$courseCode = $params["courseCode"];
+$title = $params["title"];
+$semester = $params["semester"];
+$days = $params["days"];
+$courseTime = $params["courseTime"];
+$instructor = $params["instructor"];
+$room = $params["room"];
+$startDate = $params["startDate"];
+$endDate = $params["endDate"];
 
 // validate inputs
 
