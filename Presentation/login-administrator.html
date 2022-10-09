@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="top">
         <h1 class="top-title">Login administrator</h1>
@@ -21,7 +22,7 @@
             <!-- A student can add more than 1 class at a time -->
             <h2 class="main-register-title">Enter your first name, last name and employment ID</h2>
             
-            <form class="main-register-info" method="get" action="./../login-administrator.php">
+            <form class="main-register-info"  method="get">
                 <p class="main-register-info-firstName">
                     <label>First Name</label>
                     <input class="main-register-info-firstName-input" name = "firstName" type = "text" value = "" size = "16" placeholder="Enter first name"/>
@@ -34,7 +35,7 @@
                     <label>Employment ID</label>
                     <input class="main-register-info-employmentID-input" name = "employmentID" type = "text" value = "" size = "16" placeholder="Enter employment ID"/>
                 </p>    
-                <button disabled class="main-register-info-submit">Submit</button>   
+                <button class="main-register-info-submit">Submit</button>   
             </form>
         </div>
     
@@ -44,5 +45,6 @@
         </div>
     </div>
     <script src="login-administrator.js"></script>
+
 </body>
 </html>

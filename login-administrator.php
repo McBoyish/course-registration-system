@@ -1,49 +1,41 @@
+<?php
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: POST");
+    header("Content-type: application/json");
 
-<!DOCTYPE html>
-<html xmlns = "http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Login Administrator</title>
-    <style type = "text/css">
-            body  { font-family: arial, sans-serif;
-                    background-color: #F0E68C } 
-            table { background-color: #ADD8E6 }
-            td    { padding-top: 2px;
-                    padding-bottom: 2px;
-                    padding-left: 4px;
-                    padding-right: 4px;
-                    border-width: 1px;
-                    border-style: inset }
-        </style>
-    </head>
-    <body>
-        <?php
-            extract($_GET);
-            //firstName, lastName, employmentID
+    extract($_POST);
+    //firstName, lastName, employmentID
+    // $params = json_decode(file_get_contents('php://input'), TRUE);
+    // echo($params);
 
-            // build SELECT query
-            $query="SELECT employmentID FROM administrator";
+    // build SELECT query
+    $query="SELECT employmentID FROM administrator WHERE employmentID = $employmentID";
 
-            // Connect to MySQL
-            if ( !( $database = mysqli_connect( "localhost",
-            "root", "" ) ) )                      
-            die( "Could not connect to database </body></html>" );
-    
-            // open Products database
-            if ( !mysqli_select_db( $database ,"Assignment1" ) )
-            die( "Could not open products database </body></html>" );
-        
-            // query Products database
-            if ( !( $result = mysqli_query( $database,$query) ) ) 
-            {
-            print( "Could not execute query! <br />" );
-            die( mysqli_error($database) . "</body></html>" );
-            } // end if
-        else
-        {
-            print($database);
+    // Connect to MySQL
+    if ( !( $database = mysqli_connect( "localhost",
+    "root", "" ) ) )                      
+    die( "Could not connect to database </body></html>" );
+
+    // open Products database
+    if ( !mysqli_select_db( $database ,"Assignment1" ) )
+    die( "Could not open products database </body></html>" );
+
+    // query Products database
+    if ( !( $result = mysqli_query( $database,$query) ) ) 
+    {
+    print( "Could not execute query! <br />" );
+    die( mysqli_error($database) . "</body></html>" );
+    } // end if
+    else
+    {
+        $myArray = [];
+        while($row = $result->fetch_assoc()) {
+            $myArray[] = $row;
         }
-            mysqli_close( $database );
-        ?><!-- end PHP script -->
-        
-    </body>
-</html>
+        echo json_encode($myArray);
+        // print("Your employmentID is :" . );
+
+                        
+    }
+    mysqli_close( $database );
+?>
