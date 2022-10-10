@@ -32,13 +32,6 @@ CREATE TABLE `Administrator` (
   `personID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `Administrator`
---
-
-INSERT INTO `Administrator` (`employmentID`, `personID`) VALUES
-(1, 3),
-(2, 4);
 
 -- --------------------------------------------------------
 
@@ -74,21 +67,6 @@ CREATE TABLE `Person` (
   `dateOfBirth` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `Person`
---
-
-INSERT INTO `Person` (`personID`, `firstName`, `lastName`, `address`, `email`, `phoneNumber`, `dateOfBirth`) VALUES
-(3, 'Christian', 'Jerjian', '1969 charles gill', 'christianjerjian@gmail.com', '1111111111', '2022-09-27'),
-(4, 'Christian', 'Jerjian', '1969 charles gill', 'christianjerjian@gmail.com', '1111111111', '2022-09-27'),
-(5, 'Christian', 'Jerjian', '1969 charles gill', 'christianjerjian@gmail.co', '1111111111', '2022-09-27'),
-(6, 'Christian', 'Jerjian', '1969 charles gill', 'christianjerjian@gmail.co', '1111111111', '2022-09-27'),
-(7, 'Christian', 'Jerjian', '1969 charles gill', 'christianjerjian@gmail.co', '1111111111', '2022-09-27'),
-(8, 'Christian', 'Jerjian', '1969 charles gill', 'christianjerjian@gmail.com', '1111111111', '2022-09-26'),
-(9, 'Christian', 'Jerjian', '1969 charles gill', 'christianjerjian@gmail.com', '1111111111', '2022-09-26'),
-(10, 'Christian', 'Jerjian', '1969 charles gill', 'christianjerjian@gmail.com', '1111111111', '2022-09-27'),
-(11, 'Christian', 'Jerjian', '1969 charles gill', 'christianjerjian@gmail.com', '1111111111', '2022-09-27'),
-(12, 'Christian', 'Jerjian', '1969 charles gill', 'christianjerjian@gmail.com', '1111111111', '2022-09-27');
 
 -- --------------------------------------------------------
 

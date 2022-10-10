@@ -1,4 +1,7 @@
 <?php
+include('utils/json.php');
+include('sql/database.php');
+
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
 header("Content-type: application/json");
@@ -30,35 +33,23 @@ function courseExists($database, $courseCode)
   return $res->num_rows > 0;
 }
 
-function json($message, $code)
-{
-  $array = array('message' => $message, 'code' => $code);
-  return json_encode($array);
-}
-
 $insertCourse = "INSERT INTO Course (courseCode, title, semester, days, courseTime, instructor, room, startDate, endDate)
 			     VALUES ('$coursecode', '$title','$semester','$days', '$courseTime', '$instructor', '$room', '$startDate', '$endDate')";
 
-if (!($database = mysqli_connect("localhost", "root", ""))) {
-  echo json("Internal server error", 500);
-  exit;
-}
-
-if (!mysqli_select_db($database, "Assignment1")) {
-  echo json("Internal server error", 500);
-  exit;
-}
 
 if (courseExists($database, $courseCode)) {
+  http_response_code((400));
   echo json("Course code already exists", 400);
   exit;
 }
 
-
 if (!($insertUserResult = mysqli_query($database, $insertCourse))) {
-  echo json("Internal server error", 500);
+  http_response_code((500));
+  echo json("An error has occurred", 500);
   exit;
 }
 
 mysqli_close($database);
+
+http_response_code((200));
 echo json("Course " . $courseCode . " successfully created", 200);

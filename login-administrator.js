@@ -34,16 +34,25 @@ button.addEventListener('click', async (event) => {
     body: JSON.stringify({ employmentID: employmentID.value }), // body data type must match "Content-Type" header
   };
 
-  const response = await fetch(
-    'http://localhost/SOEN-387-assignment1/api/login-administrator.php',
-    config
-  );
-  const data = await response.json();
-  if(data[0] == undefined){
-    alert(`There is no employmentID of ${employmentID.value} in the database`)
-  }else{
-    alert(`The employmentID (${data[0].employmentID}) exists in the database\nYou are an administrator!\nYou will be redirected to create an course`)
-    window.location.replace("http://localhost/SOEN-387-assignment1/create-course.html");
+  try {
+    const response = await fetch(
+      'http://localhost/SOEN-387-assignment1/api/login-administrator.php',
+      config
+    );
+    const data = await response.json();
+    if (!data[0]) {
+      alert(
+        `There is no employmentID of ${employmentID.value} in the database`
+      );
+    } else {
+      alert(
+        `The employmentID (${data[0].employmentID}) exists in the database\nYou are an administrator!\nYou will be redirected to create an course`
+      );
+      window.location.replace(
+        'http://localhost/SOEN-387-assignment1/create-course.html'
+      );
+    }
+  } catch (e) {
+    alert(e);
   }
-
 });

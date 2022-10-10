@@ -1,66 +1,28 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<?php
+include('utils/json.php');
+include('sql/database.php');
 
-<head>
-    <title>Search Results</title>
-    <style type="text/css">
-        body {
-            font-family: arial, sans-serif;
-            background-color: #F0E68C
-        }
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST");
+header("Content-type: application/json");
 
-        table {
-            background-color: #ADD8E6
-        }
+$params = json_decode(file_get_contents('php://input'), TRUE);
+# enroll course post body: {studentID, courseCode}
 
-        td {
-            padding-top: 2px;
-            padding-bottom: 2px;
-            padding-left: 4px;
-            padding-right: 4px;
-            border-width: 1px;
-            border-style: inset
-        }
-    </style>
-</head>
+// check if >= 5, throw error
+// check dates, something
 
-<body>
-    <?php
-    extract($_POST);
-    $date = date($dateOfBirth);
+// build SELECT query
+$query = "INSERT INTO Registered (registerID, studentID, courseCode) 
+          VALUES('$studentID','$courseCode')";
 
-    // build SELECT query
-    $query = "INSERT INTO person (person_Id, first_name, last_name, address, email, phone_number, date_of_birth)
-            VALUES ('$ID','$firstName','$lastName','$address','$email', '$phoneNumber', '$date')";
+if (!($result = mysqli_query($database, $query))) {
+    http_response_code(500);
+    echo (json("An error has occurred", 500));
+    exit;
+}
 
+mysqli_close($database);
 
-
-    // Connect to MySQL
-    if (!($database = mysqli_connect(
-        "localhost",
-        "root",
-        ""
-    )))
-        die("Could not connect to database </body></html>");
-
-    // open Products database
-    if (!mysqli_select_db($database, "registration"))
-        die("Could not open products database </body></html>");
-
-
-
-    // query Products database
-    if (!($result = mysqli_query($database, $query))) {
-        print("Could not execute query! <br />");
-        die(mysqli_error($database) . "</body></html>");
-    } // end if
-    else {
-        print("You have been registered");
-    }
-    mysqli_close($database);
-    ?>
-    <!-- end PHP script -->
-
-</body>
-
-</html>
+http_response_code((200));
+echo json("Registered to " . $courseCode . " successfully", 200);
