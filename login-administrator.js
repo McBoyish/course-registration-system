@@ -39,5 +39,11 @@ button.addEventListener('click', async (event) => {
     config
   );
   const data = await response.json();
-  console.log(data);
+  if(data[0] == undefined){
+    alert(`There is no employmentID of ${employmentID.value} in the database`)
+  }else{
+    alert(`The employmentID (${data[0].employmentID}) exists in the database\nYou are an administrator!\nYou will be redirected to create an course`)
+    window.location.replace("http://localhost/SOEN-387-assignment1/create-course.html");
+  }
+
 });
