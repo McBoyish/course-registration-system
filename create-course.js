@@ -8,6 +8,7 @@ let courseTime = document.querySelector('.main-register-info-courseTime-input');
 let instructor = document.querySelector(".main-register-info-instructor-input")
 let startDate = document.querySelector(".main-register-info-startDate-input")
 let endDate = document.querySelector(".main-register-info-endDate-input")
+let room = document.querySelector('room');
 
 
 form.addEventListener('change', (event) => {
@@ -21,7 +22,8 @@ form.addEventListener('change', (event) => {
         endDate.value = ""
     }
     
-    if (courseCode.value && courseTime.value && semester.value && days.value && courseTime.value && instructor.value && startDate.value && endDate.value) {
+let room = document.querySelector('room');
+    if (courseCode.value && courseTime.value && semester.value && days.value && courseTime.value && instructor.value  && room.value && startDate.value && endDate.value) {
       submit.disabled = false;
     } else {
       submit.disabled = true;
