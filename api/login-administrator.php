@@ -13,8 +13,7 @@ $employmentID = $params["employmentID"];
 $query = "SELECT employmentID FROM Administrator WHERE employmentID = $employmentID";
 
 if (!($result = mysqli_query($database, $query))) {
-    http_response_code(500);
-    echo (json("An error has occurred", 500));
+    echo (json(null, 500));
     exit;
 }
 
@@ -25,5 +24,4 @@ while ($row = $result->fetch_assoc()) {
     $myArray[] = $row;
 }
 
-http_response_code(200);
-echo json_encode($myArray);
+echo json($myArray, null);

@@ -38,18 +38,15 @@ $insertCourse = "INSERT INTO Course (courseCode, title, semester, days, courseTi
 
 
 if (courseExists($database, $courseCode)) {
-  http_response_code((400));
-  echo json("Course code already exists", 400);
+  echo json(null, 400);
   exit;
 }
 
 if (!($insertUserResult = mysqli_query($database, $insertCourse))) {
-  http_response_code((500));
-  echo json("An error has occurred", 500);
+  echo json(null, 500);
   exit;
 }
 
 mysqli_close($database);
 
-http_response_code((200));
-echo json("Course " . $courseCode . " successfully created", 200);
+echo json("Course " . $courseCode . " successfully created", null);
