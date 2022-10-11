@@ -73,13 +73,13 @@ function registeredCount($database, $studentID)
     return $res->num_rows;
 }
 
-function canRegister($now, $startDate)
+function canRegister($startDate)
 {
-    $msNow = strtotime($now); // converting to milliseconds
-    $msStart = strtotime($startDate);
-    $oneWeek = 1000 * 60 * 60 * 24 * 7;
-    $deadline = $msStart + $oneWeek;
-    return $msNow <= $deadline;
+    $now = strtotime(date("Y-m-d")); // converting to seconds
+    $start = strtotime($startDate);
+    $oneWeek = 60 * 60 * 24 * 7;
+    $deadline = $start + $oneWeek;
+    return $now <= $deadline;
 }
 
 function validateRegistrationDate($database, $courseCode)
@@ -95,8 +95,7 @@ function validateRegistrationDate($database, $courseCode)
         $rows[] = $r;
     }
     $course = $rows[0];
-    $now = date("Y-m-d");
-    return canRegister($now, $course['startDate']);
+    return canRegister($course['startDate']);
 }
 
 function isAlreadyRegistered($database, $courseCode, $studentID)
