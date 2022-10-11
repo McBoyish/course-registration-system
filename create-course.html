@@ -23,15 +23,22 @@
         <!-- A student can add more than 1 class at a time -->
         <h2 class="main-register-title">Enter information about the course</h2>
 
-        <form
-          class="main-register-info"
-          method="post"
-          action="api/create-course.php"
-        >
-          <p class="main-register-info-ID">
+        <form class="main-register-info">
+          <p class="main-register-info-id">
+            <label>Employment ID</label>
+            <input
+              class="main-register-info-id-input"
+              name="employmentID"
+              type="text"
+              value=""
+              size="16"
+              placeholder="Enter employment ID"
+            />
+          </p>
+          <p class="main-register-info-course-code">
             <label>Course Code</label>
             <input
-              class="main-register-info-ID-input"
+              class="main-register-info-course-code-input"
               name="courseCode"
               type="text"
               value=""

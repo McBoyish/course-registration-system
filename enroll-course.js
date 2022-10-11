@@ -9,14 +9,12 @@ let submitValidation = document.querySelector(
 );
 
 const isnum = (val) => /^\d+$/.test(val);
-const isValidCourse = (val) => true;
 
 function eventHandler() {
   if (
     studentIdInput.value &&
     isnum(studentIdInput.value) &&
-    courseCodeInput.value &&
-    isValidCourse(courseCodeInput.value)
+    courseCodeInput.value
   ) {
     submit.disabled = false;
     submitValidation.style.display = 'inline';

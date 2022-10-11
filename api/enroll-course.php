@@ -61,14 +61,14 @@ function courseExists($database, $courseCode)
 
 function studentExists($database, $studentID)
 {
-    $checkStudent = "SELECT * FROM Student WHERE studentID = '$studentID'";
+    $checkStudent = "SELECT * FROM Student WHERE studentID = $studentID";
     $res = mysqli_query($database, $checkStudent);
     return $res->num_rows > 0;
 }
 
 function registeredCount($database, $studentID)
 {
-    $getRegiseredCourse = "SELECT * FROM Registered WHERE studentID = '$studentID'";
+    $getRegiseredCourse = "SELECT * FROM Registered WHERE studentID = $studentID";
     $res = mysqli_query($database, $getRegiseredCourse);
     return $res->num_rows;
 }
@@ -101,7 +101,7 @@ function validateRegistrationDate($database, $courseCode)
 
 function isAlreadyRegistered($database, $courseCode, $studentID)
 {
-    $checkStudent = "SELECT * FROM Registered WHERE studentID = '$studentID' AND courseCode = '$courseCode'";
+    $checkStudent = "SELECT * FROM Registered WHERE studentID = $studentID AND courseCode = '$courseCode'";
     $res = mysqli_query($database, $checkStudent);
     return $res->num_rows > 0;
 }

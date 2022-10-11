@@ -27,7 +27,7 @@ if (userExists($database, $email)) {
 
 // insert user to PERSON table
 if (!($insertUserResult = mysqli_query($database, $insertUser))) {
-    echo (json(null, 'internal-server-error'));
+    echo (json(null, 'server-error'));
     exit;
 }
 
@@ -44,7 +44,7 @@ if ($role === 'administrator') {
 
 // calling the query
 if (!($insertUserResult = mysqli_query($database, $insertUserInPerson))) {
-    echo (json(null, 'internal-server-error'));
+    echo (json(null, 'server-error'));
     exit;
 }
 

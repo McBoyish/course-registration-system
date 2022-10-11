@@ -99,7 +99,7 @@ submit.addEventListener('click', async (event) => {
 
   const { data, error } = await response.json();
 
-  if (error === 'internal-server-error') {
+  if (error === 'server-error') {
     alert('An error has occurred');
     return;
   }
