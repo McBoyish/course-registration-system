@@ -1,6 +1,6 @@
 <?php
-include('../utils/json.php');
-include('../sql/database.php');
+include('../utils/json.php'); //json function -> encoded JSON
+include('../sql/database.php'); //connect DB
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
