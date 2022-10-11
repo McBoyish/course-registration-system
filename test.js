@@ -11,7 +11,7 @@ async function test1() {
   };
 
   const response = await fetch(
-    'http://localhost/SOEN-387-assignment1/api/get-students-by-course.php',
+    'http://localhost/SOEN-387-assignment1/api/students-by-course.php',
     config
   );
 
@@ -32,7 +32,7 @@ async function test2() {
   };
 
   const response = await fetch(
-    'http://localhost/SOEN-387-assignment1/api/get-courses-by-student.php',
+    'http://localhost/SOEN-387-assignment1/api/courses-by-student.php',
     config
   );
 
