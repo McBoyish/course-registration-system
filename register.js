@@ -109,7 +109,7 @@ submit.addEventListener('click', async (event) => {
     return;
   }
 
-  if (data) {
+  if (!error && data) {
     alert(`You have been registered. Your id is ${data}`);
     window.localStorage.setItem('id', data);
     window.localStorage.setItem('role', role.value);

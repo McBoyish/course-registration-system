@@ -82,7 +82,7 @@ submit.addEventListener('click', async (event) => {
     alert(errors[error]);
   }
 
-  if (data) {
+  if (!error && data) {
     alert(`Course ${data} successfully created`);
   }
 });

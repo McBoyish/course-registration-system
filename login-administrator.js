@@ -33,7 +33,7 @@ button.addEventListener('click', async (event) => {
     return;
   }
 
-  if (data && data.length === 0) {
+  if (!error && data && data.length === 0) {
     alert(`There is no employmentID of ${employmentID.value} in the database`);
   } else {
     alert(

@@ -42,13 +42,13 @@ $query = "INSERT INTO Registered (studentID, courseCode)
           VALUES('$studentID','$courseCode')";
 
 if (!($result = mysqli_query($database, $query))) {
-    echo (json(null, 'server-error'));
+    echo (json($database->error, 'server-error'));
     exit;
 }
 
-$result = array('courseCode' => $courseCode, 'studentID' => $studentID, 'nRegistered' => ($registeredCount + 1));
+$response = array('courseCode' => $courseCode, 'studentID' => $studentID, 'nRegistered' => ($registeredCount + 1));
 
-echo json($result, null);
+echo json($response, null);
 
 mysqli_close($database);
 
@@ -87,7 +87,7 @@ function validateRegistrationDate($database, $courseCode)
     $getCourse = "SELECT * FROM Course where courseCode = '$courseCode'";
     $res = mysqli_query($database, $getCourse);
     if ($res->num_rows !== 1) {
-        echo (json(null, 'server-error'));
+        echo (json('Impossible scenario has occurred!', 'server-error'));
         exit;
     }
     $rows = array();

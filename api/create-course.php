@@ -41,7 +41,7 @@ if (courseExists($database, $courseCode)) {
 }
 
 if (!($insertUserResult = mysqli_query($database, $insertCourse))) {
-  echo json(null, 'server-error');
+  echo json($database->error, 'server-error');
   exit;
 }
 

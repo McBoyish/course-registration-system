@@ -62,7 +62,7 @@ submit.addEventListener('click', async (event) => {
     return;
   }
 
-  if (data) {
+  if (!error && data) {
     alert(
       `Successfully registered to ${data.courseCode}. You have ${data.nRegistered} registered courses`
     );
