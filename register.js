@@ -99,12 +99,12 @@ submit.addEventListener('click', async (event) => {
 
   const { data, error } = await response.json();
 
-  if (error === 500) {
+  if (error === 'internal-server-error') {
     alert('An error has occurred');
     return;
   }
 
-  if (error === 400) {
+  if (error === 'user-exists') {
     alert('Email already exists');
     return;
   }

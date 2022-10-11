@@ -13,7 +13,7 @@ $employmentID = $params["employmentID"];
 $query = "SELECT employmentID FROM Administrator WHERE employmentID = $employmentID";
 
 if (!($result = mysqli_query($database, $query))) {
-    echo (json(null, 500));
+    echo (json(null, 'internal-server-error'));
     exit;
 }
 

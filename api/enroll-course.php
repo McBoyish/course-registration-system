@@ -9,9 +9,34 @@ header("Content-type: application/json");
 $params = json_decode(file_get_contents('php://input'), TRUE);
 $courseCode = $params['courseCode'];
 $studentID = $params['studentID'];
-# enroll course post body: {studentID, courseCode}
+
+function courseExists($database, $courseCode)
+{
+    $checkCourse = "SELECT * FROM Course WHERE courseCode = '$courseCode'";
+    $res = mysqli_query($database, $checkCourse);
+    return $res->num_rows > 0;
+}
+
+function getRegisteredCoursesCount($database, $studentID)
+{
+    $getRegiseredCourse = "SELECT * FROM Registered WHERE studentID = '$studentID'";
+    $res = mysqli_query($database, $getRegiseredCourse);
+    return $res->num_rows;
+}
+
+if (courseExists($database, $courseCode)) {
+    echo (json(null, 'course-exists'));
+    exit;
+}
+
+if (getRegisteredCoursesCount($database, $studentID) >= 5) {
+    echo (json(null, 'registration-limit-reached'));
+    exit;
+}
+
 
 // TODO:
+// check if courseExists
 // check if >= 5, throw error
 // check dates, something
 
@@ -22,7 +47,7 @@ $query = "INSERT INTO Registered (registerID, studentID, courseCode)
           VALUES('$studentID','$courseCode')";
 
 if (!($result = mysqli_query($database, $query))) {
-    echo (json(null, 500));
+    echo (json(null, 'server-error'));
     exit;
 }
 

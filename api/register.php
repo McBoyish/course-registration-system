@@ -28,13 +28,13 @@ function userExists($database, $email)
 }
 
 if (userExists($database, $email)) {
-    echo (json(null, 400));
+    echo (json(null, 'user-exists'));
     exit;
 }
 
 // insert user to PERSON table
 if (!($insertUserResult = mysqli_query($database, $insertUser))) {
-    echo (json(null, 500));
+    echo (json(null, 'internal-server-error'));
     exit;
 }
 
@@ -51,7 +51,7 @@ if ($role === 'administrator') {
 
 // calling the query
 if (!($insertUserResult = mysqli_query($database, $insertUserInPerson))) {
-    echo (json(null, 500));
+    echo (json(null, 'internal-server-error'));
     exit;
 }
 

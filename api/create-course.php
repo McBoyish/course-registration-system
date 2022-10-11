@@ -38,12 +38,12 @@ $insertCourse = "INSERT INTO Course (courseCode, title, semester, days, courseTi
 
 
 if (courseExists($database, $courseCode)) {
-  echo json(null, 400);
+  echo json(null, 'course-exists');
   exit;
 }
 
 if (!($insertUserResult = mysqli_query($database, $insertCourse))) {
-  echo json(null, 500);
+  echo json(null, 'internal-server-error');
   exit;
 }
 

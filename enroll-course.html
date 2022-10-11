@@ -22,116 +22,36 @@
       <div class="main-register">
         <!-- A student can add more than 1 class at a time -->
         <h2 class="main-register-title">
-          Enter your information and the classes you wish to add
+          Enter your student id and the course you wish to add
         </h2>
 
-        <form
-          class="main-register-info"
-          method="post"
-          action="api/enroll-course.php"
-        >
-          <p class="main-register-info-role">
-            <label for="role">Role</label>
-            <select name="role" class="role">
-              <option value="student">Student</option>
-            </select>
-          </p>
-          <p class="main-register-info-ID">
-            <label>ID</label>
+        <form class="main-register-info">
+          <p class="main-register-info-id">
+            <label>Student ID</label>
             <input
-              name="ID"
+              class="main-register-info-id-input"
+              name="studentID"
               type="text"
               value=""
               size="16"
-              placeholder="Enter ID"
+              placeholder="Enter student ID"
             />
           </p>
-          <p class="main-register-info-firstName">
-            <label>First Name</label>
+          <p class="main-register-info-course-code">
+            <label>Course code</label>
             <input
-              name="firstName"
+              class="main-register-info-course-code-input"
+              name="courseCode"
               type="text"
               value=""
               size="16"
-              placeholder="Enter first name"
+              placeholder="Enter course code"
             />
           </p>
-          <p class="main-register-info-lastName">
-            <label>Last Name</label>
-            <input
-              name="lastName"
-              type="text"
-              value=""
-              size="16"
-              placeholder="Enter last name"
-            />
-          </p>
-          <p class="main-register-info-address">
-            <label>Address</label>
-            <input
-              name="address"
-              type="text"
-              value=""
-              size="16"
-              placeholder="Enter address"
-            />
-          </p>
-          <p class="main-register-info-email">
-            <label>Email</label>
-            <input
-              class="main-register-info-email-input"
-              name="email"
-              type="email"
-              value=""
-              size="16"
-              placeholder="Enter email"
-            />
-            <span class="main-register-info-email-validation">(valid!)</span>
-          </p>
-          <p class="main-register-info-phoneNumber">
-            <label class="main-register-info-phoneNumber-text"
-              >Phone Number</label
-            >
-            <input
-              class="main-register-info-phoneNumber-input"
-              name="phoneNumber"
-              type="tel"
-              value=""
-              size="16"
-              placeholder="Enter phone number"
-            />
-            <span class="main-register-info-phoneNumber-validation"
-              >(valid!)</span
-            >
-          </p>
-          <p class="main-register-info-dateOfBirth">
-            <label>Date of birth</label>
-            <input
-              class="main-register-info-dateOfBirth-input"
-              name="dateOfBirth"
-              type="date"
-              value=""
-              size="20"
-            />
-          </p>
-          <button disabled class="main-register-info-submit">Submit</button>
-          <span class="main-register-info-submit-span"
-            >All info looks good!</span
-          >
-          <div class="main-registerclasses">
-            <a href="./register.html"
-              ><h1 class="main-registerclasses-title">
-                No account? Register here!
-              </h1></a
-            >
-          </div>
-          <div class="main-registerclasses">
-            <a href="./login-administrator.html"
-              ><h1 class="main-registerclasses-title">
-                Administrator? Login here
-              </h1></a
-            >
-          </div>
+          <button disabled class="main-register-info-submit">Register</button>
+          <span class="main-register-info-submit-span">
+            All info looks good!
+          </span>
         </form>
       </div>
 
