@@ -24,15 +24,6 @@ $room = $params["room"];
 $startDate = $params["startDate"];
 $endDate = $params["endDate"];
 
-// validate inputs
-
-function courseExists($database, $courseCode)
-{
-  $checkCourse = "SELECT * FROM Course WHERE courseCode = '$courseCode'";
-  $res = mysqli_query($database, $checkCourse);
-  return $res->num_rows > 0;
-}
-
 $insertCourse = "INSERT INTO Course (courseCode, title, semester, days, courseTime, instructor, room, startDate, endDate)
 			     VALUES ('$coursecode', '$title','$semester','$days', '$courseTime', '$instructor', '$room', '$startDate', '$endDate')";
 
@@ -50,3 +41,10 @@ if (!($insertUserResult = mysqli_query($database, $insertCourse))) {
 echo json($courseCode, null);
 
 mysqli_close($database);
+
+function courseExists($database, $courseCode)
+{
+  $checkCourse = "SELECT * FROM Course WHERE courseCode = '$courseCode'";
+  $res = mysqli_query($database, $checkCourse);
+  return $res->num_rows > 0;
+}
