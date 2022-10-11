@@ -1,44 +1,44 @@
 //Set up DOM
-let form = document.querySelector(".main-register-info");
-let role = document.querySelector(".main-register-info-role-select");
-let firstName = document.querySelector(".main-register-info-firstName-input");
-let lastName = document.querySelector(".main-register-info-lastName-input");
-let address = document.querySelector(".main-register-info-address-input");
-let email = document.querySelector(".main-register-info-email-input");
+let form = document.querySelector('.main-register-info');
+let role = document.querySelector('.main-register-info-role-select');
+let firstName = document.querySelector('.main-register-info-firstName-input');
+let lastName = document.querySelector('.main-register-info-lastName-input');
+let address = document.querySelector('.main-register-info-address-input');
+let email = document.querySelector('.main-register-info-email-input');
 let phoneNumber = document.querySelector(
-  ".main-register-info-phoneNumber-input"
+  '.main-register-info-phoneNumber-input'
 );
 let dateOfBirth = document.querySelector(
-  ".main-register-info-dateOfBirth-input"
+  '.main-register-info-dateOfBirth-input'
 );
 
 let phoneNumberValidation = document.querySelector(
-  ".main-register-info-phoneNumber-validation"
+  '.main-register-info-phoneNumber-validation'
 );
 let emailValidation = document.querySelector(
-  ".main-register-info-email-validation"
+  '.main-register-info-email-validation'
 );
-let submit = document.querySelector(".main-register-info-submit");
+let submit = document.querySelector('.main-register-info-submit');
 let submitValidation = document.querySelector(
-  ".main-register-info-submit-span"
+  '.main-register-info-submit-span'
 );
 
 // Check if phone number is good
-phoneNumber.addEventListener("keyup", (event) => {
+phoneNumber.addEventListener('keyup', (event) => {
   if (validePhoneNumber(phoneNumber.value)) {
-    phoneNumberValidation.style.display = "inline";
-  } else phoneNumberValidation.style.display = "none";
+    phoneNumberValidation.style.display = 'inline';
+  } else phoneNumberValidation.style.display = 'none';
 });
 
 // Check if email is good
-email.addEventListener("keyup", (event) => {
+email.addEventListener('keyup', (event) => {
   if (validateEmail(email.value)) {
-    emailValidation.style.display = "inline";
-  } else emailValidation.style.display = "none";
+    emailValidation.style.display = 'inline';
+  } else emailValidation.style.display = 'none';
 });
 
-form.addEventListener("change", eventHandler);
-form.addEventListener("keyup", eventHandler);
+form.addEventListener('change', eventHandler);
+form.addEventListener('keyup', eventHandler);
 
 function eventHandler() {
   if (
@@ -52,10 +52,10 @@ function eventHandler() {
     dateOfBirth.value
   ) {
     submit.disabled = false;
-    submitValidation.style.display = "inline";
+    submitValidation.style.display = 'inline';
   } else {
     submit.disabled = true;
-    submitValidation.style.display = "none";
+    submitValidation.style.display = 'none';
   }
 }
 
@@ -73,13 +73,13 @@ function validateEmail(email) {
     );
 }
 
-submit.addEventListener("click", async (event) => {
+submit.addEventListener('click', async (event) => {
   event.preventDefault();
 
   const config = {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       role: role.value,
@@ -93,30 +93,30 @@ submit.addEventListener("click", async (event) => {
   };
 
   const response = await fetch(
-    "http://localhost/SOEN-387-assignment1/api/register.php",
+    'http://localhost/SOEN-387-assignment1/api/register.php',
     config
   );
-  const datatest = await response.json();
-
-  console.log(datatest);
 
   const { data, error } = await response.json();
 
   if (error) {
     console.log(error);
-    alert("An error has occurred");
+    alert('An error has occurred');
     return;
   }
 
-  if (data.length === 0) {
-    alert(`There is no employmentID of ${employmentID.value} in the database`);
-  } else {
-    alert(
-      `The employmentID (${data[0].employmentID}) exists in the database\nYou are an administrator!\nYou will be redirected to create an course`
-    );
-    window.localStorage.setItem("employmentID", data[0].employmentID);
-    window.location.replace(
-      "http://localhost/SOEN-387-assignment1/create-course.html"
-    );
+  if (data) {
+    alert(`You have been registered. Your id is ${data}`);
+    window.localStorage.setItem('id', data);
+    window.localStorage.setItem('role', role.value);
+    if (role.value === 'administrator') {
+      window.location.replace(
+        'http://localhost/SOEN-387-assignment1/create-course.html'
+      );
+    } else {
+      window.location.replace(
+        'http://localhost/SOEN-387-assignment1/enroll-course.html'
+      );
+    }
   }
 });
