@@ -47,6 +47,6 @@ if (!($insertUserResult = mysqli_query($database, $insertCourse))) {
   exit;
 }
 
-echo json("Course " . $courseCode . " successfully created", null);
+echo json($courseCode, null);
 
 mysqli_close($database);

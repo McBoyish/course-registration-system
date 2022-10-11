@@ -26,6 +26,9 @@ if (!($result = mysqli_query($database, $query))) {
     exit;
 }
 
-echo json("Registered to " . $courseCode . " successfully", null);
+$result->courseCode = $courseCode;
+$result->studentID = $studentID;
+
+echo json($result, null);
 
 mysqli_close($database);

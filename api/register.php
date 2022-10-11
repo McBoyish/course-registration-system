@@ -55,6 +55,6 @@ if (!($insertUserResult = mysqli_query($database, $insertUserInPerson))) {
     exit;
 }
 
-echo json("You have been registered with ID: " . $database->insert_id, null);
+echo json($database->insert_id, null);
 
 mysqli_close($database);
