@@ -26,6 +26,6 @@ if (!($result = mysqli_query($database, $query))) {
     exit;
 }
 
-mysqli_close($database);
-
 echo json("Registered to " . $courseCode . " successfully", null);
+
+mysqli_close($database);

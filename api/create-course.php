@@ -28,7 +28,7 @@ $endDate = $params["endDate"];
 
 function courseExists($database, $courseCode)
 {
-  $checkCourse = "SELECT FROM Course WHERE courseCode = '$courseCode'";
+  $checkCourse = "SELECT * FROM Course WHERE courseCode = '$courseCode'";
   $res = mysqli_query($database, $checkCourse);
   return $res->num_rows > 0;
 }
@@ -47,6 +47,6 @@ if (!($insertUserResult = mysqli_query($database, $insertCourse))) {
   exit;
 }
 
-mysqli_close($database);
-
 echo json("Course " . $courseCode . " successfully created", null);
+
+mysqli_close($database);

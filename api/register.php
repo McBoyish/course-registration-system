@@ -20,6 +20,12 @@ $dateOfBirth = $params["dateOfBirth"];
 $insertUser = "INSERT INTO Person (firstName, lastName, address, email, phoneNumber, dateOfBirth)
 			   VALUES ('$firstName', '$lastName','$address','$email', '$phoneNumber', '$dateOfBirth')";
 
+function userExists($database, $email)
+{
+    $checkUser = "SELECT * FROM Person WHERE email = '$email'";
+    $res = mysqli_query($database, $checkUser);
+    return $res->num_rows > 0;
+}
 
 if (userExists($database, $email)) {
     echo (json(null, 400));
@@ -49,12 +55,6 @@ if (!($insertUserResult = mysqli_query($database, $insertUserInPerson))) {
     exit;
 }
 
-mysqli_close($database);
 echo json("You have been registered with ID: " . $database->insert_id, null);
 
-function userExists($database, $email)
-{
-    $checkUser = "SELECT FROM Person WHERE email = '$email'";
-    $res = mysqli_query($database, $checkUser);
-    return $res->num_rows > 0;
-}
+mysqli_close($database);

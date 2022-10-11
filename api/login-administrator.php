@@ -17,11 +17,11 @@ if (!($result = mysqli_query($database, $query))) {
     exit;
 }
 
-mysqli_close($database);
-
 $myArray = [];
 while ($row = $result->fetch_assoc()) {
     $myArray[] = $row;
 }
 
 echo json($myArray, null);
+
+mysqli_close($database);
