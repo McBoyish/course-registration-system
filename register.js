@@ -99,9 +99,13 @@ submit.addEventListener('click', async (event) => {
 
   const { data, error } = await response.json();
 
-  if (error) {
-    console.log(error);
+  if (error === 500) {
     alert('An error has occurred');
+    return;
+  }
+
+  if (error === 400) {
+    alert('Email already exists');
     return;
   }
 
