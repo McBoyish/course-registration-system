@@ -10,12 +10,19 @@ $params = json_decode(file_get_contents('php://input'), TRUE);
 $courseCode = $params['courseCode'];
 $studentID = $params['studentID'];
 
-if (courseExists($database, $courseCode)) {
-    echo (json(null, 'course-exists'));
+if (!studentExists($database, $studentID)) {
+    echo (json(null, 'invalid-student-id'));
     exit;
 }
 
-if (getRegisteredCoursesCount($database, $studentID) >= 5) {
+if (!courseExists($database, $courseCode)) {
+    echo (json(null, 'invalid-course-code'));
+    exit;
+}
+
+$registeredCount = registeredCount($database, $studentID);
+
+if ($registeredCount >= 5) {
     echo (json(null, 'register-limit-reached'));
     exit;
 }
@@ -36,6 +43,7 @@ if (!($result = mysqli_query($database, $query))) {
 
 $result->courseCode = $courseCode;
 $result->studentID = $studentID;
+$result->nRegistered = $registeredCount;
 
 echo json($result, null);
 
@@ -48,7 +56,14 @@ function courseExists($database, $courseCode)
     return $res->num_rows > 0;
 }
 
-function getRegisteredCoursesCount($database, $studentID)
+function studentExists($database, $studentID)
+{
+    $checkStudent = "SELECT * FROM Student WHERE studentID = '$studentID'";
+    $res = mysqli_query($database, $checkStudent);
+    return $res->num_rows > 0;
+}
+
+function registeredCount($database, $studentID)
 {
     $getRegiseredCourse = "SELECT * FROM Registered WHERE studentID = '$studentID'";
     $res = mysqli_query($database, $getRegiseredCourse);

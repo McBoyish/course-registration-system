@@ -27,3 +27,45 @@ function eventHandler() {
 }
 
 form.addEventListener('keyup', eventHandler);
+
+const errors = {
+  'invalid-student-id': 'Student id does not exist',
+  'invalid-course-code': 'Course code does not exist',
+  'register-limit-reached': 'You cannot register more than 5 courses',
+  'register-deadline-passed':
+    'Deadline for registering to this course has passed',
+  'server-error': 'An error has occurred',
+};
+
+submit.addEventListener('click', async (event) => {
+  event.preventDefault();
+
+  const config = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      studentID: studentIdInput.value,
+      courseCodeInput: courseCodeInput.value,
+    }), // body data type must match "Content-Type" header
+  };
+
+  const response = await fetch(
+    'http://localhost/SOEN-387-assignment1/api/enroll-course.php',
+    config
+  );
+
+  const { data, error } = await response.json();
+
+  if (error) {
+    alert(errors[error]);
+    return;
+  }
+
+  if (data) {
+    alert(
+      `Successfully registered to ${data.courseCode}. You have ${data.nRegistered} registered courses`
+    );
+  }
+});
