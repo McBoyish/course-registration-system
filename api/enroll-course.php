@@ -20,6 +20,11 @@ if (!courseExists($database, $courseCode)) {
     exit;
 }
 
+if (isAlreadyRegistered($database, $courseCode, $studentID)) {
+    echo (json(null, 'already-registered'));
+    exit;
+}
+
 $registeredCount = registeredCount($database, $studentID);
 
 if ($registeredCount >= 5) {
@@ -33,7 +38,7 @@ if (!validateRegistrationDate($database, $courseCode)) {
 }
 
 // build SELECT query
-$query = "INSERT INTO Registered (registerID, studentID, courseCode) 
+$query = "INSERT INTO Registered (studentID, courseCode) 
           VALUES('$studentID','$courseCode')";
 
 if (!($result = mysqli_query($database, $query))) {
@@ -41,9 +46,7 @@ if (!($result = mysqli_query($database, $query))) {
     exit;
 }
 
-$result->courseCode = $courseCode;
-$result->studentID = $studentID;
-$result->nRegistered = $registeredCount;
+$result = array('courseCode' => $courseCode, 'studentID' => $studentID, 'nRegistered' => ($registeredCount + 1));
 
 echo json($result, null);
 
@@ -75,12 +78,13 @@ function canRegister($now, $startDate)
     $msNow = strtotime($now); // converting to milliseconds
     $msStart = strtotime($startDate);
     $oneWeek = 1000 * 60 * 60 * 24 * 7;
-    return $msNow + $oneWeek <= $msStart;
+    $deadline = $msStart + $oneWeek;
+    return $msNow <= $deadline;
 }
 
 function validateRegistrationDate($database, $courseCode)
 {
-    $getCourse = "SELECT startDate FROM Course where courseCode = '$courseCode'";
+    $getCourse = "SELECT * FROM Course where courseCode = '$courseCode'";
     $res = mysqli_query($database, $getCourse);
     if ($res->num_rows !== 1) {
         echo (json(null, 'server-error'));
@@ -93,4 +97,11 @@ function validateRegistrationDate($database, $courseCode)
     $course = $rows[0];
     $now = date("Y-m-d");
     return canRegister($now, $course['startDate']);
+}
+
+function isAlreadyRegistered($database, $courseCode, $studentID)
+{
+    $checkStudent = "SELECT * FROM Registered WHERE studentID = '$studentID' AND courseCode = '$courseCode'";
+    $res = mysqli_query($database, $checkStudent);
+    return $res->num_rows > 0;
 }

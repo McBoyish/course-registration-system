@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 10, 2022 at 06:20 AM
+-- Generation Time: Oct 11, 2022 at 05:11 AM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 8.1.6
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,6 @@ CREATE TABLE `Administrator` (
   `personID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
 -- --------------------------------------------------------
 
 --
@@ -47,9 +46,16 @@ CREATE TABLE `Course` (
   `time` text NOT NULL,
   `instructor` text NOT NULL,
   `room` text NOT NULL,
-  `starDate` date NOT NULL,
+  `startDate` date NOT NULL,
   `endDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `Course`
+--
+
+INSERT INTO `Course` (`courseCode`, `title`, `semester`, `days`, `time`, `instructor`, `room`, `startDate`, `endDate`) VALUES
+('COMP 387', 'Web stuff', 'fall', 'mon-wed', '1:15', 'Hassan', 'H521', '2022-09-01', '2022-12-20');
 
 -- --------------------------------------------------------
 
@@ -67,6 +73,12 @@ CREATE TABLE `Person` (
   `dateOfBirth` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `Person`
+--
+
+INSERT INTO `Person` (`personID`, `firstName`, `lastName`, `address`, `email`, `phoneNumber`, `dateOfBirth`) VALUES
+(18, 'Jake', 'Li', 'n/a', 'jakelsh@hotmail.com', '5148925531', '2000-06-28');
 
 -- --------------------------------------------------------
 
@@ -90,6 +102,13 @@ CREATE TABLE `Student` (
   `studentID` int(11) NOT NULL,
   `personID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `Student`
+--
+
+INSERT INTO `Student` (`studentID`, `personID`) VALUES
+(2, 18);
 
 --
 -- Indexes for dumped tables
@@ -137,13 +156,13 @@ ALTER TABLE `Student`
 -- AUTO_INCREMENT for table `Administrator`
 --
 ALTER TABLE `Administrator`
-  MODIFY `employmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `employmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `Person`
 --
 ALTER TABLE `Person`
-  MODIFY `personID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `personID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `Registered`
@@ -155,7 +174,7 @@ ALTER TABLE `Registered`
 -- AUTO_INCREMENT for table `Student`
 --
 ALTER TABLE `Student`
-  MODIFY `studentID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `studentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

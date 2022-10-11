@@ -34,6 +34,7 @@ const errors = {
   'register-limit-reached': 'You cannot register more than 5 courses',
   'register-deadline-passed':
     'Deadline for registering to this course has passed',
+  'already-registered': 'You are already registered to this course',
   'server-error': 'An error has occurred',
 };
 
@@ -47,7 +48,7 @@ submit.addEventListener('click', async (event) => {
     },
     body: JSON.stringify({
       studentID: studentIdInput.value,
-      courseCodeInput: courseCodeInput.value,
+      courseCode: courseCodeInput.value,
     }), // body data type must match "Content-Type" header
   };
 
