@@ -35,10 +35,12 @@ if (!isAdmin($database, $id)) {
   exit;
 }
 
+
 if (courseExists($database, $courseCode)) {
   echo json(null, 'course-exists');
   exit;
 }
+
 
 if (!($insertUserResult = mysqli_query($database, $insertCourse))) {
   echo json($database->error, 'server-error');

@@ -1,17 +1,132 @@
-let form = document.querySelector('.main-register-info');
-let submit = document.querySelector('.main-register-info-submit');
-let id = document.querySelector('.main-register-info-id-input');
+let form = document.querySelector(".main-register-info");
+let submit = document.querySelector(".main-register-info-submit");
+let id = document.querySelector(".main-register-info-id-input");
 let courseCode = document.querySelector(
-  '.main-register-info-course-code-input'
+  ".main-register-info-course-code-input"
 );
-let courseTitle = document.querySelector('.main-register-info-title-input');
-let semester = document.querySelector('.main-register-info-semester-input');
-let days = document.querySelector('.main-register-info-days-input');
-let courseTime = document.querySelector('.main-register-info-courseTime-input');
-let instructor = document.querySelector('.main-register-info-instructor-input');
-let startDate = document.querySelector('.main-register-info-startDate-input');
-let endDate = document.querySelector('.main-register-info-endDate-input');
-let room = document.querySelector('.main-register-info-room-input');
+let courseTitle = document.querySelector(".main-register-info-title-input");
+let semester = document.querySelector(".main-register-info-semester-input");
+let days = document.querySelector(".main-register-info-days-input");
+let courseTime = document.querySelector(".main-register-info-courseTime-input");
+let instructor = document.querySelector(".main-register-info-instructor-input");
+let startDate = document.querySelector(".main-register-info-startDate-input");
+let endDate = document.querySelector(".main-register-info-endDate-input");
+let room = document.querySelector(".main-register-info-room-input");
+
+// Reports
+// List of students per course
+let formStudentList = document.querySelector(
+  ".main-information-student-list-form"
+);
+let employmentIDStudentList = document.querySelector(
+  ".main-information-student-list-employmentID-input"
+);
+let courseCodeStudentList = document.querySelector(
+  ".main-information-student-list-course-code-input"
+);
+let submitStudentList = document.querySelector(
+  ".main-information-student-list-submit"
+);
+// List of courses per student
+let formCourseList = document.querySelector(
+  ".main-information-course-list-form"
+);
+let employmentIDCourseList = document.querySelector(
+  ".main-information-course-list-employmentID-input"
+);
+let studentIDCourseList = document.querySelector(
+  ".main-information-course-list-studentID-input"
+);
+let submitCourseList = document.querySelector(
+  ".main-information-course-list-form-submit"
+);
+
+//enable button -- student list
+formStudentList.addEventListener("keyup", (event) => {
+  submitStudentList.disabled = !(
+    employmentIDStudentList.value && courseCodeStudentList.value
+  );
+});
+//enable button -- course list
+formCourseList.addEventListener("keyup", (event) => {
+  submitCourseList.disabled = !(
+    employmentIDCourseList.value && studentIDCourseList.value
+  );
+});
+
+//post request -- student list
+submitStudentList.addEventListener("click", async (event) => {
+  event.preventDefault();
+  const config = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      employmentID: employmentIDStudentList.value,
+      courseCode: courseCodeStudentList.value,
+    }),
+  };
+
+  const response = await fetch(
+    "http://localhost/SOEN-387-assignment1/api/students-by-course.php",
+    config
+  );
+
+  const { data, error } = await response.json();
+
+  if (error) {
+    alert(errors[error]);
+  }
+
+  if (!error && data) {
+    let students = [];
+    console.log(data);
+    for (const key in data) {
+      students[
+        key
+      ] = `${data[key].firstName} ${data[key].lastName} (id: ${data[key].studentID})`;
+    }
+    alert(students.join("\n"));
+    // alert(data.join("\n"));
+  }
+});
+
+//post request -- course list
+submitCourseList.addEventListener("click", async (event) => {
+  event.preventDefault();
+  const config = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      employmentID: employmentIDCourseList.value,
+      studentID: studentIDCourseList.value,
+    }),
+  };
+
+  const response = await fetch(
+    "http://localhost/SOEN-387-assignment1/api/courses-by-student.php",
+    config
+  );
+
+  const { data, error } = await response.json();
+
+  if (error) {
+    alert(errors[error]);
+  }
+
+  if (!error && data) {
+    let courses = [];
+    for (const key in data) {
+      courses[key] = data[key].courseCode;
+    }
+    alert(courses.join("\n"));
+  }
+});
+
+//---------------------------------------------
 
 const isnum = (val) => /^\d+$/.test(val);
 
@@ -20,9 +135,9 @@ const onFormChange = () => {
   let endDateObject = new Date(endDate.value);
 
   if (startDateObject.getTime() > endDateObject.getTime()) {
-    alert('Start date is after end date. Please adjust accordingly');
-    startDate.value = '';
-    endDate.value = '';
+    alert("Start date is after end date. Please adjust accordingly");
+    startDate.value = "";
+    endDate.value = "";
   }
 
   submit.disabled = !(
@@ -40,22 +155,20 @@ const onFormChange = () => {
   );
 };
 
-form.addEventListener('change', onFormChange);
-form.addEventListener('keyup', onFormChange);
+form.addEventListener("change", onFormChange);
+form.addEventListener("keyup", onFormChange);
 
 const errors = {
-  unauthorized: 'You are not allowed to create courses',
-  'server-error': 'An error has occurred',
-  'course-exists': 'This course code already exists',
+  unauthorized: "You are not allowed to create courses",
+  "server-error": "An error has occurred",
+  "course-exists": "This course code already exists",
 };
-
-submit.addEventListener('click', async (event) => {
+submit.addEventListener("click", async (event) => {
   event.preventDefault();
-
   const config = {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
       id: id.value,
@@ -72,12 +185,14 @@ submit.addEventListener('click', async (event) => {
   };
 
   const response = await fetch(
-    'http://localhost/SOEN-387-assignment1/api/create-course.php',
+    "http://localhost/SOEN-387-assignment1/api/create-course.php",
     config
   );
+  // console.log()
 
   const { data, error } = await response.json();
 
+  console.log(data);
   if (error) {
     alert(errors[error]);
   }

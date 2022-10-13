@@ -34,6 +34,7 @@ if (!($result = mysqli_query($database, $query))) {
   exit;
 }
 
+
 $array = [];
 while ($row = $result->fetch_assoc()) {
   $array[] = $row;

@@ -154,13 +154,57 @@
       </div>
 
       <div class="main-information">
-        <h2 class="main-information-title">Additional Information</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores
-          mollitia, adipisci deleniti provident cum neque corrupti ad laudantium
-          recusandae, deserunt assumenda tempore obcaecati consequatur tenetur
-          suscipit molestias delectus hic soluta.
-        </p>
+        <h2 class="main-information-title">Reports</h2>
+        <div class="main-information-student-list">
+          <h3>List of Student in a certain course</h3>
+          <form class="main-information-student-list-form">
+            <input
+              class="main-information-student-list-employmentID-input"
+              name="employmentID"
+              type="text"
+              value=""
+              size="16"
+              placeholder="Enter employment ID"
+            />
+            <input
+              class="main-information-student-list-course-code-input"
+              name="courseCode"
+              type="text"
+              value=""
+              size="16"
+              placeholder="Enter Course Code"
+            />
+            <br />
+            <button disabled class="main-information-student-list-submit">
+              Submit
+            </button>
+          </form>
+        </div>
+        <div class="main-information-course-list">
+          <h3>List of course of a certain student</h3>
+          <form class="main-information-course-list-form">
+            <input
+              class="main-information-course-list-employmentID-input"
+              name="employmentID"
+              type="text"
+              value=""
+              size="16"
+              placeholder="Enter employment ID"
+            />
+            <input
+              class="main-information-course-list-studentID-input"
+              name="studentID"
+              type="text"
+              value=""
+              size="16"
+              placeholder="Enter studentID"
+            />
+            <br />
+            <button disabled class="main-information-course-list-form-submit">
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     </div>
     <script src="create-course.js"></script>
