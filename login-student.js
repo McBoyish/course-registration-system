@@ -22,7 +22,7 @@ button.addEventListener('click', async (event) => {
   };
 
   const response = await fetch(
-    'http://localhost/SOEN-387-assignment1/api/enroll-course.php',
+    'http://localhost/SOEN-387-assignment1/api/login-student.php',
     config
   );
 
@@ -41,7 +41,7 @@ button.addEventListener('click', async (event) => {
     );
     window.localStorage.setItem('studentID', data[0].studentID);
     window.location.replace(
-      'http://localhost/SOEN-387-assignment1/create-course.html'
+      'http://localhost/SOEN-387-assignment1/enroll-course.html'
     );
   }
 });
