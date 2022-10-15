@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Assignment 1</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style-drop-course.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,21 +15,21 @@
   </head>
   <body>
     <div class="top">
-      <h1 class="top-title">Enroll to your classes!</h1>
+      <h1 class="top-title">Drop your classes!</h1>
     </div>
     <!-- Main -->
     <div class="main">
-      <div class="main-register">
+      <div class="main-drop">
         <!-- A student can add more than 1 class at a time -->
-        <h2 class="main-register-title">
-          Enter your student id and the course you wish to add
+        <h2 class="main-drop-title">
+          Enter your student id and the course you wish to drop
         </h2>
 
-        <form class="main-register-info">
-          <p class="main-register-info-id">
+        <form class="main-drop-info">
+          <p class="main-drop-info-id">
             <label>Student ID</label>
             <input
-              class="main-register-info-id-input"
+              class="main-drop-info-id-input"
               name="studentID"
               type="text"
               value=""
@@ -37,10 +37,10 @@
               placeholder="Enter student ID"
             />
           </p>
-          <p class="main-register-info-course-code">
+          <p class="main-drop-info-course-code">
             <label>Course code</label>
             <input
-              class="main-register-info-course-code-input"
+              class="main-drop-info-course-code-input"
               name="courseCode"
               type="text"
               value=""
@@ -48,31 +48,22 @@
               placeholder="Enter course code"
             />
           </p>
-          <button disabled class="main-register-info-submit">Register</button>
-          <span class="main-register-info-submit-span">
-            All info looks good!
-          </span>
+          <button disabled class="main-drop-info-submit">Drop</button>
+          <span class="main-drop-info-submit-span"> All info looks good! </span>
 
-          <div class="main-registerclasses">
+          <div class="main-drop-classes">
             <a href="./register.html"
-              ><h1 class="main-registerclasses-title">Registeration page</h1></a
+              ><h1 class="main-dropclasses-title">Registration page</h1></a
             >
           </div>
-          <div class="main-registerclasses">
-            <a href="./login-administrator.html"
-              ><h1 class="main-registerclasses-title">
-                Administrator Login
-              </h1></a
-            >
-          </div>
-          <div class="main-registerclasses">
+          <div class="main-drop-classes">
             <a href="./login-student.html"
-              ><h1 class="main-registerclasses-title">Student Login</h1></a
+              ><h1 class="main-drop-classes-title">Student Login</h1></a
             >
           </div>
-          <div class="main-registerclasses">
-            <a href="./drop-course.html"
-              ><h1 class="main-registerclasses-title">Drop Course</h1></a
+          <div class="main-drop-classes">
+            <a href="./enroll-course.html"
+              ><h1 class="main-drop-classes-title">Enroll course</h1></a
             >
           </div>
         </form>
@@ -88,6 +79,6 @@
         </p>
       </div>
     </div>
-    <script src="enroll-course.js"></script>
+    <script src="drop-course.js"></script>
   </body>
 </html>

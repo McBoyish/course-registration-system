@@ -75,9 +75,9 @@ function registeredCount($database, $studentID)
 
 function canRegister($startDate)
 {
-    $now = strtotime(date("Y-m-d")); // converting to seconds
+    $now = strtotime(date("Y-m-d H:i:s")); // converting to seconds
     $start = strtotime($startDate);
-    $oneWeek = 60 * 60 * 24 * 7;
+    $oneWeek = 60 * 60 * 24 * 8;
     $deadline = $start + $oneWeek;
     return $now <= $deadline;
 }

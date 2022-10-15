@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 03, 2022 at 02:21 AM
+-- Generation Time: Oct 15, 2022 at 03:14 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.1.6
 
@@ -32,6 +32,12 @@ CREATE TABLE `Administrator` (
   `personID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `Administrator`
+--
+
+
+
 -- --------------------------------------------------------
 
 --
@@ -39,16 +45,21 @@ CREATE TABLE `Administrator` (
 --
 
 CREATE TABLE `Course` (
-  `courseCode` int(11) NOT NULL,
+  `courseCode` varchar(30) NOT NULL,
   `title` text NOT NULL,
   `semester` text NOT NULL,
   `days` text NOT NULL,
   `time` text NOT NULL,
   `instructor` text NOT NULL,
   `room` text NOT NULL,
-  `starDate` date NOT NULL,
+  `startDate` date NOT NULL,
   `endDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `Course`
+--
+
 
 -- --------------------------------------------------------
 
@@ -66,6 +77,11 @@ CREATE TABLE `Person` (
   `dateOfBirth` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `Person`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -75,8 +91,13 @@ CREATE TABLE `Person` (
 CREATE TABLE `Registered` (
   `registerID` int(11) NOT NULL,
   `studentID` int(11) NOT NULL,
-  `courseCode` int(11) NOT NULL
+  `courseCode` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `Registered`
+--
+
 
 -- --------------------------------------------------------
 
@@ -88,6 +109,12 @@ CREATE TABLE `Student` (
   `studentID` int(11) NOT NULL,
   `personID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `Student`
+--
+
+
 
 --
 -- Indexes for dumped tables
@@ -118,7 +145,7 @@ ALTER TABLE `Person`
 ALTER TABLE `Registered`
   ADD PRIMARY KEY (`registerID`),
   ADD KEY `studentID` (`studentID`),
-  ADD KEY `registered_ibfk_1` (`courseCode`);
+  ADD KEY `courseCode` (`courseCode`);
 
 --
 -- Indexes for table `Student`
@@ -135,31 +162,25 @@ ALTER TABLE `Student`
 -- AUTO_INCREMENT for table `Administrator`
 --
 ALTER TABLE `Administrator`
-  MODIFY `employmentID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `Course`
---
-ALTER TABLE `Course`
-  MODIFY `courseCode` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `employmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `Person`
 --
 ALTER TABLE `Person`
-  MODIFY `personID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `personID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `Registered`
 --
 ALTER TABLE `Registered`
-  MODIFY `registerID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `registerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `Student`
 --
 ALTER TABLE `Student`
-  MODIFY `studentID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `studentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -175,7 +196,7 @@ ALTER TABLE `Administrator`
 -- Constraints for table `Registered`
 --
 ALTER TABLE `Registered`
-  ADD CONSTRAINT `registered_ibfk_1` FOREIGN KEY (`courseCode`) REFERENCES `Course` (`courseCode`);
+  ADD CONSTRAINT `courseCode` FOREIGN KEY (`courseCode`) REFERENCES `Course` (`courseCode`);
 
 --
 -- Constraints for table `Student`

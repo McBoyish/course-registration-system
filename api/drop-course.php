@@ -62,9 +62,10 @@ function studentExists($database, $studentID)
 
 function canDrop($endDate)
 {
-  $now = strtotime(date("Y-m-d")); // converting to seconds
+  
+  $now = strtotime(date("Y-m-d H:i:s")); // converting to seconds
   $end = strtotime($endDate);
-  return $now <= $end;
+  return $now <= ($end + (60 * 60 * 24));
 }
 
 function validateDropDate($database, $courseCode)

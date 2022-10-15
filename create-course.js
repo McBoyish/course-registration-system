@@ -13,6 +13,14 @@ let startDate = document.querySelector(".main-register-info-startDate-input");
 let endDate = document.querySelector(".main-register-info-endDate-input");
 let room = document.querySelector(".main-register-info-room-input");
 
+const errors = {
+  unauthorized: "You are not an administrator",
+  "server-error": "An error has occurred",
+  "course-exists": "This course code already exists",
+  "invalid-course-code": "This course code does not exist",
+  "invalid-student-id": "This studentID does not exist",
+};
+
 // Reports
 // List of students per course
 let formStudentList = document.querySelector(
@@ -158,11 +166,6 @@ const onFormChange = () => {
 form.addEventListener("change", onFormChange);
 form.addEventListener("keyup", onFormChange);
 
-const errors = {
-  unauthorized: "You are not allowed to create courses",
-  "server-error": "An error has occurred",
-  "course-exists": "This course code already exists",
-};
 submit.addEventListener("click", async (event) => {
   event.preventDefault();
   const config = {
