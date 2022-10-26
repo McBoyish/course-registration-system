@@ -35,11 +35,11 @@ $personId = $database->insert_id;
 
 $insertUserInPerson = "";
 if ($role === 'administrator') {
-    $insertUserInPerson = "INSERT INTO Administrator (personID)
-                       VALUES ($personId)";
+    $insertUserInPerson = "INSERT INTO Administrator (employmentID, personID)
+                       VALUES ($personId, $personId)";
 } else {
-    $insertUserInPerson = "INSERT INTO Student (personID)
-                       VALUES ($personId)";
+    $insertUserInPerson = "INSERT INTO Student (studentID, personID)
+                       VALUES ($personId, $personId)";
 }
 
 // calling the query
