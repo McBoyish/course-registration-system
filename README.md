@@ -1,7 +1,5 @@
 # SOEN-387-assignment1
 
-https://github.com/Jerjian/SOEN-387-assignment1
-
 ## Team members
 
 Christian Jerjian - 40031909
